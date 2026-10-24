@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}About ParkAhead{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-lg-9">
+  <h1 class="display-6 fw-bold">About ParkAhead</h1>
+  <p class="lead">Predictive Mall Parking & Arrival Intelligence</p>
+  <p>ParkAhead is an academic machine-learning project that estimates parking occupancy at a user's expected arrival time and compares parking options with the goal of reducing the risk of arriving late to a movie, event, or other appointment.</p>
+  <h2 class="h4 mt-4">How it works</h2>
+  <ol>
+    <li>Load historical parking observations.</li>
+    <li>Clean timestamps and invalid or missing records.</li>
+    <li>Create time-based and historical features.</li>
+    <li>Train a model and evaluate its predictions using available metrics.</li>
+    <li>Estimate occupancy at the entered arrival time and rank facilities using the recommendation logic.</li>
+  </ol>
+  <h2 class="h4 mt-4">Technology</h2>
+  <p>Python, Flask, Flask-SQLAlchemy, SQLite, pandas, NumPy, scikit-learn, and joblib, with HTML, CSS, Bootstrap, and JavaScript for the interface.</p>
+  <h2 class="h4 mt-4">Limitations</h2>
+  <ul>
+    <li>Predictions use historical data rather than live parking sensors.</li>
+    <li>Data collected in one location may not represent parking patterns elsewhere.</li>
+    <li>Travel and walking times may not reflect live traffic or venue conditions.</li>
+    <li>A predicted open space is not guaranteed and cannot be reserved through this prototype.</li>
+  </ul>
+  <a class="btn btn-primary mt-2" href="{{ url_for('planner') }}">Plan My Parking</a>
+</div></div>
+{% endblock %}

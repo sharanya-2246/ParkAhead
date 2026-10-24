@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Model Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+  <div><h1 class="h2 fw-bold mb-1">Data & model dashboard</h1><p class="text-muted">Overview of the historical data available to the project.</p></div>
+  <a class="btn btn-primary" href="{{ url_for('train_model') }}">Train / retrain model</a>
+</div>
+<div class="row g-3 my-2">
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><div class="text-muted small">Historical records loaded</div><div class="display-6 fw-semibold">{{ total_records }}</div></div></div></div>
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><div class="text-muted small">Facilities in dataset</div><div class="display-6 fw-semibold">{{ facilities|length }}</div></div></div></div>
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><div class="text-muted small">Cleaning report fields</div><div class="display-6 fw-semibold">{{ cleaning_report|length }}</div></div></div></div>
+</div>
+<section class="card mt-3"><div class="card-body">
+  <h2 class="h5">Facilities detected</h2>
+  {% if facilities %}<ul class="mb-0">{% for facility in facilities %}<li>{{ facility }}</li>{% endfor %}</ul>{% else %}<p class="text-muted mb-0">No facility information is currently available. Check the dataset and training logs.</p>{% endif %}
+</div></section>
+<section class="card mt-3"><div class="card-body">
+  <h2 class="h5">Data cleaning report</h2>
+  {% if cleaning_report %}<div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody>{% for key, value in cleaning_report.items() %}<tr><td>{{ key }}</td><td>{{ value }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<p class="text-muted mb-0">No cleaning report is available.</p>{% endif %}
+</div></section>
+<section class="card mt-3"><div class="card-body">
+  <h2 class="h5">Model evaluation metrics</h2>
+  {% if metrics is not none and not metrics.empty %}
+    <div class="table-responsive">{{ metrics.to_html(index=False, classes="table table-sm table-striped", border=0) | safe }}</div>
+  {% else %}<p class="text-muted mb-0">No evaluation metrics are available yet. Train the model to populate metrics, if supported by the current training module.</p>{% endif %}
+</div></section>
+<div class="alert alert-warning mt-3 mb-0">Metrics reflect the dataset and evaluation split used by this academic prototype. They do not guarantee real-world performance.</div>
+{% endblock %}

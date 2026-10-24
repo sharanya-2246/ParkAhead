@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Smarter Parking Plans{% endblock %}
+{% block content %}
+<section class="p-4 p-md-5 mb-4 rounded-4 bg-light">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-8">
+      <p class="text-uppercase text-primary fw-semibold mb-2">Predictive Mall Parking & Arrival Intelligence</p>
+      <h1 class="display-5 fw-bold">Spend less time searching. Arrive with a plan.</h1>
+      <p class="lead mt-3">ParkAhead estimates parking availability at your expected arrival time and compares parking options to help you reach your event with more confidence.</p>
+      <a class="btn btn-primary btn-lg mt-2" href="{{ url_for('planner') }}">Plan My Parking</a>
+      <a class="btn btn-outline-secondary btn-lg mt-2 ms-sm-2" href="{{ url_for('about') }}">How it works</a>
+    </div>
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm"><div class="card-body p-4">
+        <h2 class="h5">What ParkAhead considers</h2>
+        <ul class="mb-0">
+          <li>Predicted parking availability</li>
+          <li>Travel and parking-search time</li>
+          <li>Walking time to the venue</li>
+          <li>Time remaining before your event</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+</section>
+<div class="row g-3">
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><h2 class="h5">Forecast</h2><p class="mb-0">Uses historical parking observations to estimate future occupancy.</p></div></div></div>
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><h2 class="h5">Compare</h2><p class="mb-0">Review multiple parking facilities rather than relying on one option.</p></div></div></div>
+  <div class="col-md-4"><div class="card h-100"><div class="card-body"><h2 class="h5">Plan ahead</h2><p class="mb-0">Allow a time buffer for parking, walking, and unexpected delays.</p></div></div></div>
+</div>
+<div class="alert alert-warning mt-4 mb-0"><strong>Academic prototype:</strong> results use available historical data and are not live sensor readings or a guarantee of a parking space.</div>
+{% endblock %}
